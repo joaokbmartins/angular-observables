@@ -10,6 +10,11 @@
   </div>
   <div class="row">
     <div class="col-md-12">
+      <p *ngIf="isActivated">Activated</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
       <router-outlet></router-outlet>
     </div>
   </div>

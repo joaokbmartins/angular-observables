@@ -1,14 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-component',
-  template: 'User id: <span>{{id}}</span>',
+  template: ` <hr />
+    User id: <span>{{ id }}</span>
+    <br />
+    <button class="btn btn-primary" (click)="onActivate()">Activate</button>`,
 })
 export class UserComponent implements OnInit {
   id: number;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private userService: UserService
+  ) {}
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
@@ -16,5 +23,9 @@ export class UserComponent implements OnInit {
         this.id = +params['id'];
       }
     });
+  }
+
+  onActivate() {
+    this.userService.switchActivate();
   }
 }
